@@ -5,6 +5,7 @@ src/bower_components/
 **/*/tmp
 .DS_Store
 src/app/js/*
+src/app/content/styles/
 
 #visual studio
 src/[Dd]ebug/
