@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
-    scripts: ['app/coffee/**/*.coffee'],
+    scripts: ['coffee/**/*.coffee'],
     images: 'app/img/**/*'
 };
 

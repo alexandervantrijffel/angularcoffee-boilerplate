@@ -1,7 +1,21 @@
-logs/*
+src/logs/*
 !.gitkeep
-node_modules/
-bower_components/
-tmp
+src/node_modules/
+src/bower_components/
+**/*/tmp
 .DS_Store
-.idea
+app/js/
+
+#visual studio
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+*/*.csproj.user
+
