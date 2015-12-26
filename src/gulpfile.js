@@ -24,3 +24,7 @@ gulp.task('scripts', [], function () {
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('app/js'));
 });
+
+gulp.task('watch', function () {
+    gulp.watch(paths.scripts, ['scripts']);
+});

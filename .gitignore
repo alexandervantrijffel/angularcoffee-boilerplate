@@ -4,14 +4,14 @@ src/node_modules/
 src/bower_components/
 **/*/tmp
 .DS_Store
-app/js/
+src/app/js/*
 
 #visual studio
-[Dd]ebug/
-[Rr]elease/
-x64/
-[Bb]in/
-[Oo]bj/
+src/[Dd]ebug/
+src/[Rr]elease/
+src/x64/
+src/[Bb]in/
+src/[Oo]bj/
 
 # User-specific files
 *.suo
