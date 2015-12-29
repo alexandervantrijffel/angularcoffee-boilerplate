@@ -48,5 +48,3 @@
         (if angular.isObject(data) and String(data) isnt "[object File]" then param(data) else data)
     ]
 ]
-
-angular.module('myApp').factory

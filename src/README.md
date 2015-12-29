@@ -1,6 +1,8 @@
 # angularjs-start
 
-angular-seed extended with gulp configuration, coffeescript, a visual studio solution
+angular-seed extended with gulp configuration, coffeescript, a visual studio solution.
+
+
 
 From angular-seed:
 
