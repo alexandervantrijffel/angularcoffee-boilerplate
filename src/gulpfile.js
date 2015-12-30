@@ -13,13 +13,11 @@ var runSequence = require('run-sequence');
 
 var sourcepaths = {
     scripts: ['./coffee/**/*.coffee'],
-    images: './app/img/**/*',
     styles: './scss/**/*.scss'
 };
 var destinationpaths = {
-    js: './app/js',
-    css: './app/content/styles'
-
+    js: './app/scripts',
+    css: './app/styles'
 }
 
 gulp.task('default', ['build']);
