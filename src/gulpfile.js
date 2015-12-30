@@ -12,8 +12,8 @@ var del = require('del');
 var runSequence = require('run-sequence');
 
 var sourcepaths = {
-    scripts: ['./coffee/**/*.coffee'],
-    styles: './scss/**/*.scss'
+    scripts: ['coffee/**/*.coffee'],
+    styles: 'scss/**/*.scss'
 };
 var destinationpaths = {
     js: './app/scripts',
