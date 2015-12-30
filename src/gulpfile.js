@@ -5,6 +5,11 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
+var del = require('del');
+
+// Temporary solution until gulp 4
+// https://github.com/gulpjs/gulp/issues/355
+var runSequence = require('run-sequence');
 
 var sourcepaths = {
     scripts: ['./coffee/**/*.coffee'],
@@ -16,17 +21,25 @@ var destinationpaths = {
     css: './app/content/styles'
 
 }
-gulp.task('default', ['scripts', 'sass']);
+
+gulp.task('default', ['build']);
+
 //gulp.task('default', ['clean', 'scripts', 'sass']);
 
-//gulp.task('clean', function (done) {
-//    require('del')([
-//        destinationpaths.js,
-//        destinationpaths.css
-//    ], done);
-//});
+gulp.task('build', function (done) {
+    runSequence('clean',
+        ['scripts', 'sass'],
+    done);
+});
 
-gulp.task('scripts', [], function () {
+gulp.task('clean', function (done) {
+    return del([
+        destinationpaths.js,
+        destinationpaths.css
+    ], done);
+});
+
+gulp.task('scripts', function () {
     // Minify and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
     return gulp.src(sourcepaths.scripts)

@@ -75,7 +75,9 @@
     <None Include="app\bower_components\font-awesome\scss\_rotated-flipped.scss" />
     <None Include="app\bower_components\font-awesome\scss\_stacked.scss" />
     <None Include="app\bower_components\font-awesome\scss\_variables.scss" />
+    <None Include="coffee\common.coffee" />
     <None Include="scss\app.scss" />
+    <Content Include="app\apple-touch-icon.png" />
     <Content Include="app\bower_components\angular-loader\angular-loader.js" />
     <Content Include="app\bower_components\angular-loader\angular-loader.min.js" />
     <Content Include="app\bower_components\angular-mocks\angular-mocks.js" />
@@ -256,6 +258,7 @@
     <Content Include="app\components\version\version-directive_test.js" />
     <Content Include="app\components\version\version.js" />
     <Content Include="app\components\version\version_test.js" />
+    <Content Include="app\favicon.ico" />
     <Content Include="app\index-async.html" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
@@ -444,7 +447,6 @@
     <Folder Include="bin\Debug\" />
     <Folder Include="coffee\utilities\" />
     <Folder Include="coffee\view1\" />
-    <Folder Include="node_modules\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
