@@ -40,11 +40,11 @@ gulp.task('clean', function (done) {
 gulp.task('scripts', function () {
     // Minify and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
-    return gulp.src(sourcepaths.scripts)
+    return gulp.src(['./coffee/common.coffee','./' + sourcepaths.scripts])
       .pipe(sourcemaps.init())
-        .pipe(coffee())
-        .pipe(uglify())
-        .pipe(concat('all.min.js'))
+      .pipe(coffee())
+      .pipe(uglify())
+      .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(destinationpaths.js));
 });
