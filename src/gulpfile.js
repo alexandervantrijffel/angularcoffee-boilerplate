@@ -72,7 +72,7 @@ gulp.task('scripts', function () {
       .pipe(coffee())
       .pipe(uglify())
       .pipe(concat('all.min.js'))
-      .pipe(sourcemaps.write())
+      .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest(destinationpaths.js))
       .on('error', function (error) {
             console.error('' + error);
