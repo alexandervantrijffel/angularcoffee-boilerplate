@@ -76,6 +76,8 @@
     <None Include="app\bower_components\font-awesome\scss\_stacked.scss" />
     <None Include="app\bower_components\font-awesome\scss\_variables.scss" />
     <None Include="coffee\common.coffee" />
+    <None Include="coffee\views\view1.coffee" />
+    <None Include="coffee\views\view2.coffee" />
     <None Include="scss\app.scss" />
     <Content Include="app\apple-touch-icon.png" />
     <Content Include="app\bower_components\angular-loader\angular-loader.js" />
@@ -262,12 +264,10 @@
     <Content Include="app\index-async.html" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
-    <Content Include="app\view1\view1.html" />
-    <Content Include="app\view1\view1.js" />
-    <Content Include="app\view1\view1_test.js" />
-    <Content Include="app\view2\view2.html" />
-    <Content Include="app\view2\view2.js" />
-    <Content Include="app\view2\view2_test.js" />
+    <Content Include="app\views\view1.html" />
+    <Content Include="app\views\view1_test.js" />
+    <Content Include="app\views\view2.html" />
+    <Content Include="app\views\view2_test.js" />
     <Content Include="e2e-tests\protractor.conf.js" />
     <Content Include="e2e-tests\scenarios.js" />
     <Content Include="gulpfile.js" />
@@ -433,7 +433,6 @@
     <None Include="LICENSE" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="package.json" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -442,11 +441,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\content\img\" />
-    <Folder Include="app\content\styles\maps\" />
+    <Folder Include="app\content\styles\" />
+    <Folder Include="app\img\" />
     <Folder Include="app\js\" />
+    <Folder Include="app\scripts\" />
+    <Folder Include="app\styles\maps\" />
     <Folder Include="bin\Debug\" />
     <Folder Include="coffee\utilities\" />
-    <Folder Include="coffee\view1\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

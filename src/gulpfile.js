@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var del = require('del');
+var browserSync = require('browser-sync').create();
 
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
@@ -43,17 +44,17 @@ var sourcepaths = {
     styles: 'scss/**/*.scss'
 };
 var destinationpaths = {
-    js: './app/scripts',
-    css: './app/styles'
+    js: 'app/scripts',
+    css: 'app/styles'
 }
 
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'browser-sync']);
 
 //gulp.task('default', ['clean', 'scripts', 'sass']);
 
 gulp.task('build', function (done) {
     runSequence('clean',
-        ['scripts', 'sass'],
+        ['scripts', 'sass'],'watch',
     done);
 });
 
@@ -69,22 +70,41 @@ gulp.task('scripts', function () {
     // with sourcemaps all the way down 
     return gulp.src(['./coffee/common.coffee','./' + sourcepaths.scripts])
       .pipe(sourcemaps.init())
-      .pipe(coffee())
+      .pipe(coffee({bare: true, header: false}))
       .pipe(uglify())
       .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest(destinationpaths.js))
+      .pipe(browserSync.stream({ match: '**/*.js' }))
       .on('error', function (error) {
             console.error('' + error);
-       });
+      })
+});
+
+gulp.task('sass', function () {
+    return gulp
+        // Find all `.scss` files
+        .src(sourcepaths.styles)
+        .pipe(sourcemaps.init())
+        // Run Sass on those files
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(sourcemaps.write('maps'))
+        // Write the resulting CSS in the output folder
+        .pipe(gulp.dest(destinationpaths.css))
+        .pipe(browserSync.stream({ match: '**/*.css' }))
+        .on('error', function (error) {
+            console.error('' + error);
+        });
 });
 
 function changeLogger(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');    
 }
-gulp.task('watch', function () {
-    gulp.watch(sourcepaths.scripts, ['scripts']).on('change', changeLogger);
-    gulp.watch(sourcepaths.styles, ['sass']).on('change', changeLogger);
+gulp.task('watch', function() {
+    gulp.watch(sourcepaths.scripts, ['scripts']);
+    gulp.watch(sourcepaths.styles, ['sass']);
+    gulp.watch("app/**/*.html").on('change', browserSync.reload);
 });
 
 var sassOptions = {
@@ -96,18 +116,12 @@ var autoprefixerOptions = {
     browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
 };
 
-gulp.task('sass', function () {
-    return gulp
-      // Find all `.scss` files
-      .src(sourcepaths.styles)
-      .pipe(sourcemaps.init())
-      // Run Sass on those files
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(autoprefixer(autoprefixerOptions))
-      .pipe(sourcemaps.write('maps'))
-      // Write the resulting CSS in the output folder
-      .pipe(gulp.dest(destinationpaths.css))
-      .on('error', function (error) {
-        console.error('' + error);
-      });
+// Static server
+gulp.task('browser-sync', function () {
+    browserSync.init({
+        injectChanges: true,
+        server: {
+            baseDir: "./app"
+        }
+    });
 });

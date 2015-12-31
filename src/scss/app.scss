@@ -8,16 +8,19 @@ body {
     overflow-x: hidden;
     font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 72px;
+    webkit-tap-highlight-color: $theme-color
 }
 .navbar-default {
+
     .nav li a{
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 1px;
+
         &:hover, &:focus {
              color: $theme-color;
-            outline: 0
+            outline: 01
         }
     }
 
@@ -40,7 +43,7 @@ h5,
 h6 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-weight: 700
+    font-weight: 700;
 }
 section {
     padding: 100px 0;
@@ -79,7 +82,7 @@ footer ul.quicklinks {
     text-transform: none
 }
 ul.social-buttons {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 ul.social-buttons li a {
     display: block;
@@ -98,7 +101,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-    background-color: $theme-color
+    background: $theme-color
 }
 .btn:focus,
 .btn:active,
@@ -108,7 +111,7 @@ ul.social-buttons li a:active {
 }
 ::-moz-selection {
     text-shadow: none;
-    background: $theme-color
+    background-color: $theme-color
 }
 ::selection {
     text-shadow: none;
@@ -119,8 +122,5 @@ img::selection {
 }
 img::-moz-selection {
     background: 0 0
-}
-body {
-    webkit-tap-highlight-color: $theme-color
 }
 

@@ -16,7 +16,6 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
-    "http-server": "^0.6.1",
     "jasmine-core": "^2.3.4",
     "karma": "~0.12",
     "karma-chrome-launcher": "^0.1.12",
@@ -30,8 +29,8 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "prestart": "npm install && gulp && start gulp watch",
-    "start": "http-server -a localhost -p 8000 -c-1",
+    "prestart": "npm install",
+    "start": "gulp",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
