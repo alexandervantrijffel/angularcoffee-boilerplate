@@ -11,6 +11,33 @@ var del = require('del');
 // https://github.com/gulpjs/gulp/issues/355
 var runSequence = require('run-sequence');
 
+
+// Workaround for https://github.com/gulpjs/gulp/issues/71
+// Another temporary solution until gulp 4
+var origSrc = gulp.src;
+gulp.src = function () {
+    return fixPipe(origSrc.apply(this, arguments));
+};
+function fixPipe(stream) {
+    var origPipe = stream.pipe;
+    stream.pipe = function (dest) {
+        arguments[0] = dest.on('error', function (error) {
+            var nextStreams = dest._nextStreams;
+            if (nextStreams) {
+                nextStreams.forEach(function (nextStream) {
+                    nextStream.emit('error', error);
+                });
+            } else if (dest.listeners('error').length === 1) {
+                throw error;
+            }
+        });
+        var nextStream = fixPipe(origPipe.apply(this, arguments));
+        (this._nextStreams || (this._nextStreams = [])).push(nextStream);
+        return nextStream;
+    };
+    return stream;
+}
+
 var sourcepaths = {
     scripts: ['coffee/**/*.coffee'],
     styles: 'scss/**/*.scss'
@@ -46,7 +73,10 @@ gulp.task('scripts', function () {
       .pipe(uglify())
       .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(destinationpaths.js));
+      .pipe(gulp.dest(destinationpaths.js))
+      .on('error', function (error) {
+            console.error('' + error);
+       });
 });
 
 function changeLogger(event) {
@@ -76,5 +106,8 @@ gulp.task('sass', function () {
       .pipe(autoprefixer(autoprefixerOptions))
       .pipe(sourcemaps.write('maps'))
       // Write the resulting CSS in the output folder
-      .pipe(gulp.dest(destinationpaths.css));
+      .pipe(gulp.dest(destinationpaths.css))
+      .on('error', function (error) {
+        console.error('' + error);
+      });
 });
