@@ -4,3 +4,4 @@ start https://nodejs.org/en/#download
 echo Press a key when the installation of Nodejs has completed.
 pause
 cd /d "%~dp0\src"
+"C:\Program Files\nodejs\npm" install
