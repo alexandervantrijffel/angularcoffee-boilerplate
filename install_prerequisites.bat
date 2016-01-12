@@ -6,6 +6,12 @@ cd /d "%~dp0\src"
 echo Installing Gulp globally
 start "" "C:\Program Files\nodejs\npm" install -g gulp
 echo Installing Bower globally
-"C:\Program Files\nodejs\npm" install -g bower
+start "" "C:\Program Files\nodejs\npm" install -g bower
+echo Install Python 2.7.x from https://www.python.org/getit/windows to be able to use browsersync for live reloading
+echo IMPORTANT install version 2.7.x, NOT 3.x.x because the latter is not supported by node-gyp
+start https://www.python.org/getit/windows
+echo Press a key when python 2.7.x has been installed
+pause 
+start "" "C:\Program Files\nodejs\npm" install -g node-gyp
 cd /d "%~dp0"
 echo Run start_server.cmd to continue...

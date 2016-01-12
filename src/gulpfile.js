@@ -12,7 +12,26 @@ var browserSync = require('browser-sync').create();
 // https://github.com/gulpjs/gulp/issues/355
 var runSequence = require('run-sequence');
 
+var options = {
+	minify: false,
+	sass: {
+		errLogToConsole: true,
+		outputStyle: 'expanded' // 'compressed'
+	}
+}
 
+var autoprefixerOptions = {
+    browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
+};
+
+var sourcepaths = {
+    scripts: ['coffee/**/*.coffee'],
+    styles: 'scss/**/*.scss'
+};
+var destinationpaths = {
+    js: 'app/scripts',
+    css: 'app/styles'
+}
 // Workaround for https://github.com/gulpjs/gulp/issues/71
 // Another temporary solution until gulp 4
 var origSrc = gulp.src;
@@ -39,18 +58,13 @@ function fixPipe(stream) {
     return stream;
 }
 
-var sourcepaths = {
-    scripts: ['coffee/**/*.coffee'],
-    styles: 'scss/**/*.scss'
-};
-var destinationpaths = {
-    js: 'app/scripts',
-    css: 'app/styles'
-}
-
 gulp.task('default', ['build', 'browser-sync']);
 
-//gulp.task('default', ['clean', 'scripts', 'sass']);
+gulp.task('dist', function() {
+	options.minify = true;
+	options.sass.outputStyle = 'compressed';
+	gulp.start('default');
+})
 
 gulp.task('build', function (done) {
     runSequence('clean',
@@ -66,12 +80,16 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('scripts', function () {
-    // Minify and copy all JavaScript (except vendor scripts) 
+    // Minify if requested and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
-    return gulp.src(['./coffee/common.coffee','./' + sourcepaths.scripts])
+    var obj = gulp.src(['./coffee/common.coffee','./' + sourcepaths.scripts])
       .pipe(sourcemaps.init())
-      .pipe(coffee({bare: true, header: false}))
-      .pipe(uglify())
+      .pipe(coffee({bare: false, header: false}));
+	  
+	if (options.minify)
+		obj = obj.pipe(uglify());
+	
+	return obj
       .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest(destinationpaths.js))
@@ -87,7 +105,7 @@ gulp.task('sass', function () {
         .src(sourcepaths.styles)
         .pipe(sourcemaps.init())
         // Run Sass on those files
-        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(sass(options.sass).on('error', sass.logError))
         .pipe(autoprefixer(autoprefixerOptions))
         .pipe(sourcemaps.write('maps'))
         // Write the resulting CSS in the output folder
@@ -106,15 +124,6 @@ gulp.task('watch', function() {
     gulp.watch(sourcepaths.styles, ['sass']);
     gulp.watch("app/**/*.html").on('change', browserSync.reload);
 });
-
-var sassOptions = {
-    errLogToConsole: true,
-    outputStyle: 'compressed' // 'expanded'
-};
-
-var autoprefixerOptions = {
-    browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
-};
 
 // Static server
 gulp.task('browser-sync', function () {

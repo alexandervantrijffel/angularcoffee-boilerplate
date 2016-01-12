@@ -3,7 +3,6 @@
 angular-seed extended with gulp configuration, coffeescript, a visual studio solution.
 
 
-
 From angular-seed:
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
