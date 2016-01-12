@@ -30,10 +30,9 @@
 		<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
 	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="styles/app.css">
-    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
@@ -127,18 +126,27 @@
     </div>
 </footer>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script type='text/javascript'>
+  window.Modernizr || document.write('<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js">\x3C/script>')
+</script>
 <!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
 -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>')</script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Bootstrap JS local fallback -->
+<script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"><\/script>')}</script>
+<!-- Bootstrap CSS local fallback -->
+<script>
+$(document).ready(function() {
+var bodyColor = $('body').css('color');
+if(bodyColor != 'rgb(51, 51, 51)') {
+	$("head").prepend('<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">');}});
+</script>
 <script src="scripts/all.min.js"></script>
-<script src="components/version/version.js"></script>
-<script src="components/version/version-directive.js"></script>
-<script src="components/version/interpolate-filter.js"></script>
 </body>
 </html>
