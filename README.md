@@ -1,7 +1,7 @@
-# angularjs-start
+# angularcoffee-boilerplate
 
-angular-seed extended with gulp configuration, coffeescript, a visual studio solution.
-
+Project template with gulp configuration, coffeescript, a visual studio solution, browsersync, karma, protractor, bootstrap.
+Based on angular-seed extended.
 
 From angular-seed:
 
