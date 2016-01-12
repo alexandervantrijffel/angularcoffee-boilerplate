@@ -7,6 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var del = require('del');
 var browserSync = require('browser-sync').create();
+var addsrc = require('gulp-add-src');
 
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
@@ -82,9 +83,12 @@ gulp.task('clean', function (done) {
 gulp.task('scripts', function () {
     // Minify if requested and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
-    var obj = gulp.src(['./coffee/common.coffee','./' + sourcepaths.scripts])
+    var obj = gulp.src(['./coffee/common.coffee', './' + sourcepaths.scripts])
       .pipe(sourcemaps.init())
-      .pipe(coffee({bare: false, header: false}));
+      .pipe(coffee({bare: false, header: false}))
+	  .pipe(addsrc('./components/version/version.js'))   
+	  .pipe(addsrc('./components/version/version-directive.js'))   
+	  .pipe(addsrc('./components/version/interpolate-filter.js'));
 	  
 	if (options.minify)
 		obj = obj.pipe(uglify());
