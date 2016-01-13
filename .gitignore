@@ -6,6 +6,7 @@ src/bower_components/
 .DS_Store
 src/app/scripts/*
 src/app/styles/*
+**/npm-debug.log
 
 #visual studio
 src/[Dd]ebug/
