@@ -1,9 +1,9 @@
 src/logs/*
 !.gitkeep
 src/node_modules/
-src/bower_components/
 **/*/tmp
 .DS_Store
+src/app/bower_components/
 src/app/scripts/*
 src/app/styles/*
 **/npm-debug.log
