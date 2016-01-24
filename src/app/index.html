@@ -140,12 +140,13 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <!-- Bootstrap JS local fallback -->
 <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"><\/script>')}</script>
-<!-- Bootstrap CSS local fallback -->
 <script>
-$(document).ready(function() {
-var bodyColor = $('body').css('color');
-if(bodyColor != 'rgb(51, 51, 51)') {
-	$("head").prepend('<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">');}});
+    $(document).ready(function () {
+        // Bootstrap CSS local fallback
+        var bodyColor = $('body').css('color');
+        if(bodyColor != 'rgb(51, 51, 51)') {
+            $("head").prepend('<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">');
+        }});
 </script>
 <script src="scripts/all.min.js"></script>
 </body>

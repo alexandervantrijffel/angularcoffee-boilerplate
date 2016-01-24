@@ -22,12 +22,12 @@ var options = {
 }
 
 var autoprefixerOptions = {
-    browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
+    browsers: ['last 2 versions', '> 1%', 'Firefox ESR']
 };
 
 var sourcepaths = {
     scripts: ['coffee/**/*.coffee'],
-    styles: 'scss/**/*.scss'
+    styles: 'scss/app.scss'
 };
 var destinationpaths = {
     js: 'app/scripts',
@@ -84,11 +84,12 @@ gulp.task('scripts', function () {
     // Minify if requested and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
     var obj = gulp.src(['./coffee/common.coffee', './' + sourcepaths.scripts])
-      .pipe(sourcemaps.init())
-      .pipe(coffee({bare: false, header: false}))
-	  .pipe(addsrc('./components/version/version.js'))   
-	  .pipe(addsrc('./components/version/version-directive.js'))   
-	  .pipe(addsrc('./components/version/interpolate-filter.js'));
+        .pipe(sourcemaps.init())
+        .pipe(coffee({ bare: false, header: false }))
+        .pipe(addsrc('./components/version/version.js'))
+        .pipe(addsrc('./components/version/version-directive.js'))
+        .pipe(addsrc('./components/version/interpolate-filter.js'))
+        .pipe(addsrc('./app/bower_components/gritter/js/jquery.gritter.js'));
 	  
 	if (options.minify)
 		obj = obj.pipe(uglify());

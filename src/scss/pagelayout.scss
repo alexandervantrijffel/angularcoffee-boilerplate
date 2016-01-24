@@ -1,0 +1,74 @@
+﻿body {
+    overflow-x: hidden;
+    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 72px;
+    webkit-tap-highlight-color: $theme-color
+}
+.navbar-default {
+
+    .nav li a{
+        font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+
+        &:hover, &:focus {
+             color: $theme-color;
+            outline: 01
+        }
+    }
+
+    .navbar-nav > .active > a {
+        border-radius: 0;
+        color: #fff;
+        background-color: $theme-color;
+        &:hover, &:focus {
+                color: #fff;
+            background-color: $theme-color;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+section {
+    padding: 100px 0;
+
+h3.section-subheading {
+    font-size: 16px;
+    text-transform: none;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 75px
+}
+}
+@media (min-width: 768px) {
+    section {
+        padding: 150px 0
+    }
+}
+.text-muted {
+    color: #777
+}
+::-moz-selection {
+    text-shadow: none;
+    background-color: $theme-color
+}
+::selection {
+    text-shadow: none;
+    background: $theme-color
+}
+img::selection {
+    background: 0 0
+}
+img::-moz-selection {
+    background: 0 0
+}
