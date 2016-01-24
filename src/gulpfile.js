@@ -14,11 +14,11 @@ var addsrc = require('gulp-add-src');
 var runSequence = require('run-sequence');
 
 var options = {
-	minify: false,
-	sass: {
-		errLogToConsole: true,
-		outputStyle: 'expanded' // 'compressed'
-	}
+    minify: false,
+    sass: {
+        errLogToConsole: true,
+        outputStyle: 'expanded' // 'compressed'
+    }
 }
 
 var autoprefixerOptions = {
@@ -34,7 +34,16 @@ var sourcepaths = {
             'components/version/version-directive.js',
             'components/version/interpolate-filter.js',
             'app/bower_components/gritter/js/jquery.gritter.js'],
-    styles: 'scss/app.scss'
+    // add all .js filed that should be copied to src/app/scripts
+    scriptsToBeDeployed: [
+            'app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js',
+            'app/bower_components/jquery/dist/jquery.min.js',
+            'app/bower_components/bootstrap/dist/js/bootstrap.min.js'
+        ],
+    styles: 'scss/app.scss',
+    stylesToBeDeployed: [
+            'app/bower_components/bootstrap/dist/css/bootstrap.min.css'
+        ]
 };
 var destinationpaths = {
     js: 'app/scripts',
@@ -69,9 +78,9 @@ function fixPipe(stream) {
 gulp.task('default', ['build', 'browser-sync']);
 
 gulp.task('dist', function() {
-	options.minify = true;
-	options.sass.outputStyle = 'compressed';
-	gulp.start('default');
+    options.minify = true;
+    options.sass.outputStyle = 'compressed';
+    gulp.start('default');
 })
 
 gulp.task('build', function (done) {
@@ -88,17 +97,22 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('scripts', function () {
-    // Minify if requested and copy all JavaScript (except vendor scripts) 
-    // with sourcemaps all the way down 
+    // copy scripts to scripts folder
+    var copyObj = gulp.src(sourcepaths.scriptsToBeDeployed);
+    if (options.minify)
+        copyObj = copyObj.pipe(uglify());
+    copyObj.pipe(gulp.dest(destinationpaths.js));
+
+    // bundle for processing and concatenating .scss and .js files and storing the results to scripts/all.min.js
     var obj = gulp.src(sourcepaths.coffeeScriptsToBeBundled)
         .pipe(sourcemaps.init())
         .pipe(coffee({ bare: false, header: false }))
         .pipe(addsrc(sourcepaths.scriptsToBeBundled));
-	  
-	if (options.minify)
-		obj = obj.pipe(uglify());
-	
-	return obj
+      
+    if (options.minify)
+        obj = obj.pipe(uglify());
+    
+    return obj
       .pipe(concat('all.min.js'))
       .pipe(sourcemaps.write('maps'))
       .pipe(gulp.dest(destinationpaths.js))
@@ -109,6 +123,12 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('sass', function () {
+    // copy styles to styles folder
+    var copyObj = gulp.src(sourcepaths.stylesToBeDeployed);
+    copyObj.pipe(gulp.dest(destinationpaths.css));
+
+
+    // bundle for processing and concatenating .scss and .css files and storing the results to styles/app.css
     return gulp
         // Find all `.scss` files
         .src(sourcepaths.styles)
