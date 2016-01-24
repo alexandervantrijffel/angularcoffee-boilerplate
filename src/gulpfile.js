@@ -26,7 +26,14 @@ var autoprefixerOptions = {
 };
 
 var sourcepaths = {
-    scripts: ['coffee/**/*.coffee'],
+    // add all .coffee files that should be bundled in all.min.js
+    coffeeScriptsToBeBundled: ['scripts/coffee/common.coffee', 'scripts/coffee/**/*.coffee'],
+    // add all .js files that should be bundled in all.min.js
+    scriptsToBeBundled: ['scripts/js/**/*.js', 
+            'components/version/version.js',
+            'components/version/version-directive.js',
+            'components/version/interpolate-filter.js',
+            'app/bower_components/gritter/js/jquery.gritter.js'],
     styles: 'scss/app.scss'
 };
 var destinationpaths = {
@@ -83,13 +90,10 @@ gulp.task('clean', function (done) {
 gulp.task('scripts', function () {
     // Minify if requested and copy all JavaScript (except vendor scripts) 
     // with sourcemaps all the way down 
-    var obj = gulp.src(['./coffee/common.coffee', './' + sourcepaths.scripts])
+    var obj = gulp.src(sourcepaths.coffeeScriptsToBeBundled)
         .pipe(sourcemaps.init())
         .pipe(coffee({ bare: false, header: false }))
-        .pipe(addsrc('./components/version/version.js'))
-        .pipe(addsrc('./components/version/version-directive.js'))
-        .pipe(addsrc('./components/version/interpolate-filter.js'))
-        .pipe(addsrc('./app/bower_components/gritter/js/jquery.gritter.js'));
+        .pipe(addsrc(sourcepaths.scriptsToBeBundled));
 	  
 	if (options.minify)
 		obj = obj.pipe(uglify());
@@ -125,7 +129,8 @@ function changeLogger(event) {
     console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');    
 }
 gulp.task('watch', function() {
-    gulp.watch(sourcepaths.scripts, ['scripts']);
+    gulp.watch(sourcepaths.coffeeScriptsToBeBundled, ['scripts']);
+    gulp.watch(sourcepaths.scriptsToBeBundled, ['scripts']);
     gulp.watch(sourcepaths.styles, ['sass']);
     gulp.watch("app/**/*.html").on('change', browserSync.reload);
 });

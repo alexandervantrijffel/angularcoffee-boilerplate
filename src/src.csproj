@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="scripts\js\first.js" />
+    <Content Include="scripts\js\second.js" />
     <None Include="app\bower_components\font-awesome\.bower.json" />
     <None Include="app\bower_components\font-awesome\.npmignore" />
     <None Include="app\bower_components\font-awesome\bower.json" />
@@ -130,7 +132,7 @@
     <Content Include="app\bower_components\font-awesome\css\font-awesome.min.css" />
     <Content Include="app\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="app\bower_components\font-awesome\HELP-US-OUT.txt" />
-    <Content Include="app\bower_components\gritter\css\jquery.gritter.css" />
+    <None Include="app\bower_components\gritter\css\jquery.gritter.scss" />
     <Content Include="app\bower_components\gritter\images\gritter-light.png" />
     <Content Include="app\bower_components\gritter\images\gritter-long.png" />
     <Content Include="app\bower_components\gritter\images\gritter.png" />
@@ -269,6 +271,8 @@
     <Content Include="app\bower_components\jquery\src\var\toString.js" />
     <Content Include="app\bower_components\jquery\src\wrap.js" />
     <Content Include="app\favicon.ico" />
+    <Content Include="app\img\gritter.png" />
+    <Content Include="app\img\ie-spacer.gif" />
     <Content Include="app\index-async.html" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
@@ -286,6 +290,7 @@
     <Content Include="e2e-tests\scenarios.js" />
     <Content Include="gulpfile.js" />
     <Content Include="karma.conf.js" />
+    <None Include="scss\_colors.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".bowerrc" />
@@ -445,20 +450,16 @@
     <None Include="bower.json" />
     <None Include="coffee\app.coffee" />
     <None Include="LICENSE" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="package.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <None Include="scss\footer.scss" />
+    <None Include="scss\pagelayout.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\img\" />
     <Folder Include="app\js\" />
     <Folder Include="app\scripts\" />
     <Folder Include="app\styles\maps\" />
-    <Folder Include="bin\Debug\" />
     <Folder Include="coffee\utilities\" />
     <Folder Include="Properties\" />
   </ItemGroup>
