@@ -1,0 +1,74 @@
+﻿.error {
+    color: #e74c3c;
+    border-color: #EED3D7;
+}
+
+.form-control:focus {
+    border: none;
+    background-color: #ddd;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.form-control {
+    color: #444;
+    background-color: #ededed;
+    border: none;
+}
+
+$gray-darkest: #222;
+$placeholder-text: #bbbbbb;
+$brand-primary: #fed136;
+
+section#exampleform {
+    h1 {
+        color: #ddd;
+    }
+    .form-group input, .form-group textarea {
+        padding: 20px
+    }
+
+	background-color: $gray-darkest;
+    	.section-heading {
+		color: white;
+	}
+	.form-group {
+		margin-bottom: 25px;
+		input,
+		textarea {
+			padding: 20px;
+            margin-bottom: 10px;
+		}
+		input.form-control {
+			height: auto;
+		}
+		textarea.form-control {
+			height: 236px;
+		}
+	}
+	.form-control:focus {
+		border-color: $brand-primary;
+		box-shadow: none;
+	}
+	::-webkit-input-placeholder {
+	   text-transform: uppercase;
+	   font-weight: 700;
+	   color: $placeholder-text;
+	}
+	:-moz-placeholder { /* Firefox 18- */
+	   text-transform: uppercase;
+	   font-weight: 700;
+	   color: $placeholder-text;
+	}
+	::-moz-placeholder {  /* Firefox 19+ */
+	   text-transform: uppercase;
+	   font-weight: 700;
+	   color: $placeholder-text;
+	}
+	:-ms-input-placeholder {  
+	   text-transform: uppercase;
+	   font-weight: 700;
+	   color: $placeholder-text;
+	}
+}

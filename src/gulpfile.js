@@ -151,7 +151,7 @@ function changeLogger(event) {
 gulp.task('watch', function() {
     gulp.watch(sourcepaths.coffeeScriptsToBeBundled, ['scripts']);
     gulp.watch(sourcepaths.scriptsToBeBundled, ['scripts']);
-    gulp.watch(sourcepaths.styles, ['sass']);
+    gulp.watch("scss/**/*.scss", ['sass']);
     gulp.watch("app/**/*.html").on('change', browserSync.reload);
 });
 

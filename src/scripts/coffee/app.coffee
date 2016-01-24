@@ -2,6 +2,7 @@
   'ngRoute'
   'myApp.view1'
   'myApp.view2'
+  'myApp.exampleform'
   'myApp.version'
 ]).config [
   '$routeProvider','$httpProvider',($routeProvider,$httpProvider) ->
