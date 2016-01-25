@@ -103,7 +103,7 @@ gulp.task('scripts', function () {
         copyObj = copyObj.pipe(uglify());
     copyObj.pipe(gulp.dest(destinationpaths.js));
 
-    // bundle for processing and concatenating .scss and .js files and storing the results to scripts/all.min.js
+    // bundle for processing and concatenating .coffee and .js files and storing the results to scripts/all.min.js
     var obj = gulp.src(sourcepaths.coffeeScriptsToBeBundled)
         .pipe(sourcemaps.init())
         .pipe(coffee({ bare: false, header: false }))
