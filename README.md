@@ -14,12 +14,6 @@ Features:
 - Unit testing with Karma and Protractor
 - Visual Studio solution for development on Windows
 
-## Getting Started
-
-Install dependencies using the script install_prerequisites.bat. 
-
-The script installs the following components globally: node.js, it's Node Package Manager (npm), Gulp, Bower, Python 2.7.x (for Browsersync) and node-gyp.
-
 ### Clone angularcoffee-boilerplate
 
 Clone the angularcoffee-boilerplate repository using [git][git]:
@@ -36,6 +30,12 @@ git clone --depth=1 https://github.com/alexandervantrijffel/angularcoffee-boiler
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.
+
+## Install prerequisites
+
+Install dependencies using the script install_prerequisites.bat. 
+
+The script installs the following components globally: node.js, it's Node Package Manager (npm), Gulp, Bower, Python 2.7.x (for Browsersync) and node-gyp.
 
 ### Run the Application
 
