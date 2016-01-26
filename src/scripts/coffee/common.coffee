@@ -19,3 +19,4 @@ while (length--)
 
 window.l = (t,s) =>
     if s then console.log t,s else console.log t
+  

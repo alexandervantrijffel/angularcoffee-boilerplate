@@ -1,28 +1,30 @@
 ﻿<section id="exampleform">
     <div class="container">
         <div class="row">
-            
+            <h1>AngularJS example form</h1>
             <div class="col-md-6">
                 <form name="exampleForm" ng-submit="submit(exampleForm)" novalidate class="form-group">
-                    <h1>AngularJS example form</h1>
+
                     <!--<label for="name">Name:</label>-->
                     <input type="text" placeholder="Your name *" name="name" id="name" data-ng-model="vm.name" required data-focus-me class="form-control"/>
                     <p class="error" data-ng-if="(exampleForm.$submitted || exampleForm.name.$touched) && exampleForm.name.$invalid">Please enter a name</p>
 
-                    <input type="text" placeholder="Your email *" name="email" id="email" data-ng-model="vm.email" required class="form-control"/>
+                    <input type="email" placeholder="Your email" name="email" id="email" data-ng-model="vm.email" class="form-control"/>
                     <p class="error" data-ng-if="(exampleForm.$submitted || exampleForm.email.$touched) && exampleForm.email.$invalid">Please enter an email address.</p>
 
-                    <!--<div id="buttonBar">
-                        <input type="submit" value="Save" class="btn btn-default"/>
-                        <input type="button" data-ng-click="cancel()" value="Cancel" class="btn btn-default"/>
-                        <input type="button" data-ng-show-popup="confirmDelete" data-ng-popup-title="Delete this block?"
-                               data-ng-on-submit="delete()" value="Delete" class="btn btn-default" data-ng-show="block.blockId != 0"/>
-                    </div>-->
+                    <textarea placeholder="Your message" name="message" id="message" data-ng-model="vm.message" rows="5" required></textarea>
+                    <p class="error" data-ng-if="(exampleForm.$submitted || exampleForm.message.$touched) && exampleForm.message.$invalid">Please enter a message to send.</p>
+                    <div id="buttonBar">
+                        <input type="submit" value="Send" class="btn btn-default"/>
+                        <input type="button" data-ng-click="cancel()" value="Cancel" class="btn btn-default" formnovalidate/>
+                    </div>
                 </form>
+                <ul id="resultMsg">
+                    <li ng-repeat="msg in resultMessages">
+                        {{ msg }}
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
-<!--<div id="confirmDelete" class="modal-popup">
-    Are you sure you want to delete block #{{block.blockNumber}}?
-</div>-->

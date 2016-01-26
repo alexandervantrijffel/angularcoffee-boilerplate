@@ -40,6 +40,9 @@ section#exampleform {
 			padding: 20px;
             margin-bottom: 10px;
 		}
+        input[type=text], textarea {
+            width: 540px;
+        }
 		input.form-control {
 			height: auto;
 		}
@@ -71,4 +74,15 @@ section#exampleform {
 	   font-weight: 700;
 	   color: $placeholder-text;
 	}
+
+    ul#resultMsg {
+        width: 540px;
+        padding: 12px; 
+        min-height: 160px;
+        background-color: #ddd;
+        li {
+            margin: 6px;
+            list-style: none;
+        }
+    }
 }
