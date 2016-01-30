@@ -8,6 +8,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var del = require('del');
 var browserSync = require('browser-sync').create();
 var addsrc = require('gulp-add-src');
+var rename = require('gulp-rename');
 
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
@@ -33,7 +34,7 @@ var sourcepaths = {
             'components/version/version.js',
             'components/version/version-directive.js',
             'components/version/interpolate-filter.js',
-            'app/bower_components/gritter/js/jquery.gritter.js'],
+            'app/bower_components/jquery.gritter/js/jquery.gritter.js'],
     // add all .js filed that should be copied to src/app/scripts
     scriptsToBeDeployed: [
             'app/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js',
@@ -42,7 +43,7 @@ var sourcepaths = {
         ],
     styles: 'scss/app.scss',
     stylesToBeDeployed: [
-            'app/bower_components/bootstrap/dist/css/bootstrap.min.css'
+            'app/bower_components/bootstrap/dist/css/bootstrap.min.css'			
         ]
 };
 var destinationpaths = {
@@ -84,8 +85,7 @@ gulp.task('dist', function() {
 })
 
 gulp.task('build', function (done) {
-    runSequence('clean',
-        ['scripts', 'sass'],'watch',
+    runSequence(['clean','sass-prepare'],['scripts', 'sass'],'watch',
     done);
 });
 
@@ -122,12 +122,20 @@ gulp.task('scripts', function () {
       })
 });
 
-gulp.task('sass', function () {
+gulp.task('sass-prepare', function () {
+// rename jquery.gritter.css to jquery.gritter.scss so that it is included in app.css
+	 return gulp.src("./app/bower_components/jquery.gritter/css/jquery.gritter.css")
+		.pipe(rename(function (path) {
+		path.extname = ".scss"
+		}))
+		.pipe(gulp.dest("./app/bower_components/jquery.gritter/css/"));  
+});
+		
+gulp.task('sass', function () {	  
     // copy styles to styles folder
     var copyObj = gulp.src(sourcepaths.stylesToBeDeployed);
     copyObj.pipe(gulp.dest(destinationpaths.css));
-
-
+  
     // bundle for processing and concatenating .scss and .css files and storing the results to styles/app.css
     return gulp
         // Find all `.scss` files

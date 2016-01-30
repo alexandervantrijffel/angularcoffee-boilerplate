@@ -4,6 +4,7 @@ src/node_modules/
 **/*/tmp
 .DS_Store
 src/app/bower_components/
+
 src/app/scripts/*
 src/app/styles/*
 **/npm-debug.log
