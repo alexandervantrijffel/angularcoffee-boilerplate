@@ -2,6 +2,16 @@
 echo Download and install Nodejs for windows from https://nodejs.org/en/#download
 start https://nodejs.org/en/#download
 echo Press a key when the installation of Nodejs has completed.
+
+if exist "C:\Program Files\nodejs\npm" (
+    SET npmexe = "C:\Program Files\nodejs\npm"
+) else if exist "C:\Program Files (x86)\nodejs\npm" (
+    SET npmexe = "C:\Program Files\nodejs\npm"
+) else (
+    echo Nodejs NPM not found! Please install Nodejs NPM first..
+    goto STOP
+)
+
 cd /d "%~dp0\src"
 echo Installing Gulp globally
 start "" "C:\Program Files\nodejs\npm" install -g gulp
@@ -15,3 +25,5 @@ pause
 start "" "C:\Program Files\nodejs\npm" install -g node-gyp
 cd /d "%~dp0"
 echo Run start_server.cmd to continue...
+
+:STOP
