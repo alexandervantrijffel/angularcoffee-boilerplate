@@ -41,8 +41,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\404.html" />
+    <Content Include="app\android-chrome-36x36.png" />
+    <Content Include="app\android-chrome-48x48.png" />
+    <Content Include="app\android-chrome-72x72.png" />
+    <Content Include="app\android-chrome-96x96.png" />
+    <Content Include="app\apple-touch-icon-114x114.png" />
+    <Content Include="app\apple-touch-icon-120x120.png" />
+    <Content Include="app\apple-touch-icon-152x152.png" />
+    <Content Include="app\apple-touch-icon-57x57.png" />
+    <Content Include="app\apple-touch-icon-60x60.png" />
+    <Content Include="app\apple-touch-icon-72x72.png" />
+    <Content Include="app\apple-touch-icon-76x76.png" />
+    <Content Include="app\apple-touch-icon-precomposed.png" />
+    <Content Include="app\browserconfig.xml" />
+    <Content Include="app\favicon-16x16.png" />
+    <Content Include="app\favicon-32x32.png" />
+    <Content Include="app\favicon-96x96.png" />
+    <Content Include="app\images\gritter.png" />
+    <Content Include="app\images\ie-spacer.gif" />
+    <Content Include="app\mstile-150x150.png" />
+    <Content Include="app\mstile-310x150.png" />
+    <Content Include="app\mstile-70x70.png" />
+    <Content Include="app\safari-pinned-tab.svg" />
     <Content Include="app\views\exampleform.html" />
     <Content Include="scripts\js\my.js" />
+    <None Include="app\manifest.json" />
     <None Include="scripts\coffee\common.coffee" />
     <None Include="scripts\coffee\services\notifier.coffee" />
     <None Include="scripts\coffee\views\exampleform.coffee" />
@@ -51,8 +74,6 @@
     <None Include="scss\app.scss" />
     <Content Include="app\apple-touch-icon.png" />
     <Content Include="app\favicon.ico" />
-    <Content Include="app\img\gritter.png" />
-    <Content Include="app\img\ie-spacer.gif" />
     <Content Include="app\index-async.html" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
