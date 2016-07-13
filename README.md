@@ -191,3 +191,5 @@ tests when you push to GitHub.
 
 You will need to enable the integration between Travis and GitHub. See the Travis website for more
 instruction on how to do this.
+
+Maintained by Alexander van Trijffel of [Software Development Consultancy company Structura](http://structura.ws)
